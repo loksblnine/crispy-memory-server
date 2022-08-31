@@ -13,11 +13,8 @@ import {
 
 const router = express.Router();
 router
-  .route('/all')
-  .get(getAllFeedbacks);
-
-router
-  .route("/")
+  .route('/')
+  .get(getAllFeedbacks)
   .post(createFeedback);
 
 router

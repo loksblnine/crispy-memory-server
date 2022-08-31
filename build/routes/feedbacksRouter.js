@@ -7,10 +7,8 @@ const express_1 = __importDefault(require("express"));
 const feedbacksController_1 = require("../controllers/feedbacksController");
 const router = express_1.default.Router();
 router
-    .route('/all')
-    .get(feedbacksController_1.getAllFeedbacks);
-router
-    .route("/")
+    .route('/')
+    .get(feedbacksController_1.getAllFeedbacks)
     .post(feedbacksController_1.createFeedback);
 router
     .route("/:id")

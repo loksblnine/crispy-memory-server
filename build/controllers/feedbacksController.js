@@ -4,15 +4,15 @@ exports.updateFeedbackById = exports.deleteFeedbackById = exports.getFeedbackByI
 const models_1 = require("../database/models");
 const getAllFeedbacks = async (request, response) => {
     try {
-        const limit = Number(request.query.limit) || 10, offset = Number(request.query.offset) || 0;
+        const limit = Number(request.query.limit) || 10, offset = Number(request.query.page) * 10 || 0;
         const feedbacks = await models_1.Feedback.findAll({
-            attributes: ["id", "email", "role"],
             limit,
             offset
         });
         return response.status(201).json(feedbacks);
     }
     catch (err) {
+        console.log(1234, err);
         return response.status(500).json({ message: "Something went wrong" });
     }
 };
