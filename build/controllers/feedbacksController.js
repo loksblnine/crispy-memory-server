@@ -13,6 +13,11 @@ const getAllFeedbacks = async (request, response) => {
             };
         }
         const feedbacks = await models_1.Feedback.findAll({
+            include: [{
+                    model: models_1.User,
+                    as: 'users',
+                    attributes: ['email']
+                }],
             where,
             limit,
             offset
@@ -20,6 +25,7 @@ const getAllFeedbacks = async (request, response) => {
         return response.status(201).json(feedbacks);
     }
     catch (err) {
+        console.log(111, err);
         return response.status(500).json({ message: "Something went wrong" });
     }
 };

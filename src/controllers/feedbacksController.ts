@@ -17,12 +17,18 @@ export const getAllFeedbacks = async (request: Request, response: Response): Pro
       };
     }
     const feedbacks = await Feedback.findAll({
+      include: [{
+        model: User,
+        as: 'users',
+        attributes: ['email']
+      }],
       where,
       limit,
       offset
     });
     return response.status(201).json(feedbacks);
   } catch (err) {
+    console.log(111, err);
     return response.status(500).json({message: "Something went wrong"});
   }
 };
