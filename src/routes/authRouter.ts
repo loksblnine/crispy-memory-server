@@ -14,6 +14,7 @@ router
 
 router
   .route("/login")
+  .get(AuthController.isTokenValid)
   .post(AuthController.loginUser);
 
 export default router;

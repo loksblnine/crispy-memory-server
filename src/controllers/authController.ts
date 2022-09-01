@@ -55,3 +55,8 @@ export const loginUser = async (request: Request, response: Response): Promise<R
     return response.status(500).json({message: "Something went wrong"});
   }
 };
+
+export const isTokenValid = async (request: Request, response: Response): Promise<void> => {
+  const token = generateJwt(request.body.user.id, request.body.user.email, request.body.user.role, "2h")
+  response.status(200).json({token});
+}
