@@ -29,13 +29,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const AuthController = __importStar(require("../controllers/authController"));
 const authMiddleware_1 = require("../middlewares/authMiddleware");
+const validationMiddleware_1 = require("../middlewares/validationMiddleware");
 const router = express_1.default.Router();
 router
     .route('/register')
-    .post(AuthController.registerUser);
+    .post(validationMiddleware_1.validateEmailMiddleware, AuthController.registerUser);
 router
     .route("/login")
     .get(authMiddleware_1.authMiddleware, AuthController.isTokenValid)
-    .post(AuthController.loginUser);
+    .post(validationMiddleware_1.validateEmailMiddleware, AuthController.loginUser);
 exports.default = router;
 //# sourceMappingURL=authRouter.js.map
