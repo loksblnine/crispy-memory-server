@@ -17,7 +17,7 @@ router
   .route('/')
   .get(authMiddleware, getAllFeedbacks)
   //validate mark
-  .post(authMiddleware, createFeedback);
+  .post(createFeedback);
 
 router
   .route("/:id")

@@ -10,7 +10,7 @@ const router = express_1.default.Router();
 router
     .route('/')
     .get(authMiddleware_1.authMiddleware, feedbacksController_1.getAllFeedbacks)
-    .post(authMiddleware_1.authMiddleware, feedbacksController_1.createFeedback);
+    .post(feedbacksController_1.createFeedback);
 router
     .route("/:id")
     .get(authMiddleware_1.authMiddleware, feedbacksController_1.getFeedbackById)

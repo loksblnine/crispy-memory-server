@@ -12,7 +12,6 @@ const authMiddleware = (request, response, next) => {
             response.status(401).json({ message: "Unauthorized" });
         }
         const decoded = jsonwebtoken_1.default.verify(token, String(process.env.SECRET_KEY));
-        console.log(1234, decoded);
         if (decoded?.role === 1) {
             request.body.user = decoded;
             next();
