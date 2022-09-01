@@ -5,5 +5,6 @@
 export interface IValidationError {
   email?: string | null,
   password?: string | null,
-  role?: string | null
+  role?: string | null,
+  mark?: string | null
 }

@@ -11,19 +11,18 @@ import {
   updateFeedbackById
 } from "../controllers/feedbacksController";
 import {authMiddleware} from "../middlewares/authMiddleware";
+import {validateEmailMiddleware, validateMarkMiddleware} from "../middlewares/validationMiddleware";
 
 const router = express.Router();
 router
   .route('/')
   .get(authMiddleware, getAllFeedbacks)
-  //validate mark
-  .post(createFeedback);
+  .post(validateEmailMiddleware, validateMarkMiddleware, createFeedback);
 
 router
   .route("/:id")
   .get(authMiddleware, getFeedbackById)
-  //validate mark
-  .put(authMiddleware, updateFeedbackById)
+  .put(authMiddleware, validateEmailMiddleware, validateMarkMiddleware, updateFeedbackById)
   .delete(authMiddleware, deleteFeedbackById);
 
 export default router;
