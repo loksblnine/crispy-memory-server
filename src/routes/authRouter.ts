@@ -4,6 +4,7 @@
 
 import express from "express";
 import * as AuthController from "../controllers/authController";
+import {authMiddleware} from "../middlewares/authMiddleware";
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router
 
 router
   .route("/login")
-  .get(AuthController.isTokenValid)
+  .get(authMiddleware, AuthController.isTokenValid)
   .post(AuthController.loginUser);
 
 export default router;

@@ -1,5 +1,5 @@
 /**
- * userRouter.ts
+ * feedbacksRouter.ts
  * */
 
 import express from "express";
@@ -10,17 +10,20 @@ import {
   getFeedbackById,
   updateFeedbackById
 } from "../controllers/feedbacksController";
+import {authMiddleware} from "../middlewares/authMiddleware";
 
 const router = express.Router();
 router
   .route('/')
-  .get(getAllFeedbacks)
-  .post(createFeedback);
+  .get(authMiddleware, getAllFeedbacks)
+  //validate mark
+  .post(authMiddleware, createFeedback);
 
 router
   .route("/:id")
-  .get(getFeedbackById)
-  .put(updateFeedbackById)
-  .delete(deleteFeedbackById);
+  .get(authMiddleware, getFeedbackById)
+  //validate mark
+  .put(authMiddleware, updateFeedbackById)
+  .delete(authMiddleware, deleteFeedbackById);
 
 export default router;
